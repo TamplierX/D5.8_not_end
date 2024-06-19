@@ -1,0 +1,19 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+News Delete
+{% endblock title %}
+
+{% block content %}
+    {% if post.content_category == 'NE' %}
+        <h1>Удаление поста</h1>
+        <hr>
+        <form action="" method="post">
+            {% csrf_token %}
+            <p>Удаляем "{{ object.content_title }}"?</p>
+            <input type="submit" value="Delete" />
+        </form>
+    {% else %}
+        <h1>Ошибка!</h1>
+    {% endif %}
+{% endblock content %}
