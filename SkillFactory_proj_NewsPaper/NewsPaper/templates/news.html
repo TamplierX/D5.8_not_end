@@ -11,9 +11,9 @@ News
     <h1>Все статьи</h1>
 
     {% if perms.News.add_post %}
-    <a href="{% url 'news_create' %}">Создать новость </a>
+    <a href="{% url 'news:news_create' %}">Создать новость </a>
     <br>
-    <a href="{% url 'articles_create' %}">Создать статью </a>
+    <a href="{% url 'news:articles_create' %}">Создать статью </a>
     {% endif %}
 
     {% if posts %}
@@ -35,16 +35,16 @@ News
                         <td>
                             {% if perms.News.change_post %}
                                 {% if post.content_category == 'NE' %}
-                                    <a href="{% url 'news_edit' pk=post.id %}">Изменить новость</a>
+                                    <a href="{% url 'news:news_edit' pk=post.id %}">Изменить новость</a>
                                 {% elif post.content_category == 'AR' %}
-                                    <a href="{% url 'articles_edit' pk=post.id %}">Изменить статью</a>
+                                    <a href="{% url 'news:articles_edit' pk=post.id %}">Изменить статью</a>
                                 {% endif %}
                             {% endif %}
                             {% if perms.News.delete_post %}
                                 {% if post.content_category == 'NE' %}
-                                    <a href="{% url 'news_delete' post.id %}">Удалить новость</a>
+                                    <a href="{% url 'news:news_delete' post.id %}">Удалить новость</a>
                                 {% elif post.content_category == 'AR' %}
-                                    <a href="{% url 'articles_delete' post.id %}">Удалить статью</a>
+                                    <a href="{% url 'news:articles_delete' post.id %}">Удалить статью</a>
                                 {% endif %}
                             {% endif %}
                         </td>
