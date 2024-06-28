@@ -57,7 +57,7 @@ class Post(models.Model):
         return f'{self.content_title} {self.date_create} {self.content_text}'
 
     def get_absolute_url(self):
-        return reverse('post_details', args=[str(self.id)])
+        return reverse('news:post_details', args=[str(self.id)])
 
 
 class PostCategory(models.Model):
@@ -82,6 +82,6 @@ class Comment(models.Model):
 
 
 class Subscriber(models.Model):
-    user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='subscriptions',)
-    category = models.ForeignKey(to='Category', on_delete=models.CASCADE, related_name='subscriptions',)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='subscriber',)
+    category = models.ForeignKey(to='Category', on_delete=models.CASCADE, related_name='subscriber',)
     
