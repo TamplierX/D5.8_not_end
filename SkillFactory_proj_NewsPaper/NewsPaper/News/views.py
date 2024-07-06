@@ -10,6 +10,7 @@ from .models import Subscriber, Category
 from .forms import PostForm
 from .models import Post
 from .filters import PostFilter
+from .tasks import send_notification
 
 
 class PostList(ListView):
@@ -49,6 +50,13 @@ class NewsCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = PostForm
     model = Post
     template_name = 'news_create.html'
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.content_category = 'NE'
+        post.save()
+        send_notification.apply_async([post.pk])
+        return super().form_valid(form)
 
 
 class ArticlesCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):

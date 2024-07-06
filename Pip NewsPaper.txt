@@ -1,0 +1,8 @@
+pip install django
+pip install django-filter
+pip install django-allauth
+pip install requests
+pip install django-apscheduler
+pip install celery
+pip install redis
+pip install 'celery[redis]'
